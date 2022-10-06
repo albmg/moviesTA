@@ -9,6 +9,7 @@ import { MovieDetailsComponent } from './movies/screens/movie-details/movie-deta
 import { HomeComponent } from './movies/screens/home/home.component';
 import { MovieCardComponent } from './movies/components/movie-card/movie-card.component';
 import { MovieDetailCardComponent } from './movies/components/movie-detail-card/movie-detail-card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MovieDetailCardComponent } from './movies/components/movie-detail-card/
     MovieDetailCardComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
