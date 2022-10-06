@@ -11,13 +11,17 @@
   total results: {{ popularMovies.total_results }}
 </div>
 
-<div *ngFor="let item of popularMovies.results">
 
-  {{ item.title }}
-  <img src="https://image.tmdb.org/t/p/original/{{ item.poster_path }}"/>
-  {{ item.release_date }}
-  {{ item.popularity }}
+<div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8 gap-8">
+
+  <app-movie-card
+    *ngFor="let movie of popularMovies.results"
+    [movie]="movie"
+  >
+ </app-movie-card>
 
 </div>
+
+
 
 <mat-paginator [pageSize]="popularMovies.results.length" [length]="popularMovies.total_pages"></mat-paginator>
