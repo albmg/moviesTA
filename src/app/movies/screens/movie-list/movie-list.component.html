@@ -1,3 +1,23 @@
-<mat-spinner></mat-spinner>
+<div *ngIf="!popularMovies">
+  <mat-spinner></mat-spinner>
+</div>
 
-<!-- <mat-paginator></mat-paginator> -->
+<div class="bg-blue-500">
+  <h2 class="text-white">Info de la búsqueda</h2>
+  page: {{ popularMovies.page }}
+  <br>
+  total pages: {{ popularMovies.total_pages }}
+  <br>
+  total results: {{ popularMovies.total_results }}
+</div>
+
+<div *ngFor="let item of popularMovies.results">
+
+  {{ item.title }}
+  <img src="https://image.tmdb.org/t/p/original/{{ item.poster_path }}"/>
+  {{ item.release_date }}
+  {{ item.popularity }}
+
+</div>
+
+<mat-paginator [pageSize]="popularMovies.results.length" [length]="popularMovies.total_pages"></mat-paginator>
