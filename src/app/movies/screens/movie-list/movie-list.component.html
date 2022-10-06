@@ -11,7 +11,7 @@
   total results: {{ popularMovies.total_results }}
 </div>
 
-
+<!-- movie card-->
 <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8 gap-8">
 
   <app-movie-card
@@ -24,4 +24,10 @@
 
 
 
-<mat-paginator [pageSize]="popularMovies.results.length" [length]="popularMovies.total_pages"></mat-paginator>
+<mat-paginator
+  [pageSize]="popularMovies.results.length"
+  [length]="500 * popularMovies.results.length"
+  showFirstLastButtons="true"
+  (page)="setPage($event)"
+  >
+</mat-paginator>
