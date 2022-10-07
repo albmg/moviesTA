@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { PopularMovies } from './interfaces/popular.interface';
+import { Movie } from './interfaces/movie.interface';
 
 
 @Injectable({
@@ -15,8 +16,13 @@ export class MoviesService {
 
   constructor(private http: HttpClient) { }
 
-    getPopularMovies( page: number): Observable <PopularMovies> {
-      return this.http.get<PopularMovies>(`${ this.baseUrl }/popular?api_key=${ this.apiKey }&language=en-US&page=${page} `)
-    }
+  getPopularMovies( page: number): Observable <PopularMovies> {
+    return this.http.get<PopularMovies>(`${ this.baseUrl }/popular?api_key=${ this.apiKey }&language=en-US&page=${page} `)
+  }
+
+
+  getMovieDetail( id: string ): Observable <Movie> {
+    return this.http.get<Movie>(`${ this.baseUrl }/${ id }?api_key=${ this.apiKey }&language=en-US`)
+  }
 
 }
