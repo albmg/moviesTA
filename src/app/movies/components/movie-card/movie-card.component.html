@@ -1,26 +1,55 @@
  <div class="rounded-xl shadow-xl">
 
-  <img
+  <div *ngIf="!movies">
+
+    <img
     class="rounded-t-xl w-full object-cover"
     src="https://image.tmdb.org/t/p/original/{{ movie.poster_path }}"
     alt="{{ movie.title }} movie poster"
     [routerLink]="['/movie', movie.id]"
+    >
 
-  >
+    <div class="flex flex-col p-7">
+      <h2 class="text-xl font-bold truncate mt-1">
+        {{ movie.title }}
+      </h2>
+      <p class="text-base text-gray-600 mt-1">
+        {{ movie.popularity }}
+      </p>
+      <p class="text-base text-gray-600 mt-1">
+        {{ movie.release_date }}
+      </p>
+
+      {{ movie.vote_average }}
+
+    </div>
+
+  </div>
 
 
-  <div class="flex flex-col p-7">
-    <h2 class="text-xl font-bold truncate mt-1">
-      {{ movie.title }}
-    </h2>
-    <p class="text-base text-gray-600 mt-1">
-      {{ movie.popularity }}
-    </p>
-    <p class="text-base text-gray-600 mt-1">
-      {{ movie.release_date }}
-    </p>
+  <div *ngIf="movies">
 
-    {{ movie.id }}
+    <img
+      class="rounded-t-xl w-full object-cover"
+      src="https://image.tmdb.org/t/p/original/{{ movies.poster_path }}"
+      alt="{{ movies.title }} movie poster"
+    >
+
+    <div class="flex flex-col p-7">
+      <h2 class="text-xl font-bold truncate mt-1">
+        {{ movies.title }}
+      </h2>
+      <p class="text-base text-gray-600 mt-1">
+        {{ movies.release_date }}
+      </p>
+      <p class="text-base text-gray-600 mt-1">
+        {{ movies.vote_average }}
+      </p>
+      <p>
+        {{ movies.overview }}
+      </p>
+
+    </div>
 
   </div>
 
