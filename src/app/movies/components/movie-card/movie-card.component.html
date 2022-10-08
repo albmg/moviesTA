@@ -29,25 +29,47 @@
 
   <div *ngIf="movies">
 
-    <img
+    <div class="grid grid-cols-1 sm:grid-cols-3 p-8 w-full">
+
+      <img
       class="rounded-t-xl w-full object-cover"
       src="https://image.tmdb.org/t/p/original/{{ movies.poster_path }}"
       alt="{{ movies.title }} movie poster"
-    >
+      >
 
-    <div class="flex flex-col p-7">
-      <h2 class="text-xl font-bold truncate mt-1">
-        {{ movies.title }}
-      </h2>
-      <p class="text-base text-gray-600 mt-1">
-        {{ movies.release_date }}
-      </p>
-      <p class="text-base text-gray-600 mt-1">
-        {{ movies.vote_average }}
-      </p>
-      <p>
-        {{ movies.overview }}
-      </p>
+      <div class="flex flex-col p-7">
+
+        <h2 class="text-xl font-bold truncate mt-1">
+          {{ movies.title }} ({{ movies.release_date.toString() | slice:0:4 }})
+          <!-- Convert date in string and apply slice to get only year-->
+        </h2>
+
+        <h3 class="italic text-xl font-bold mt-1">
+          {{ movies.tagline }}
+        </h3>
+
+        <p>
+          {{ movies.genres | join }}
+        </p>
+
+
+        <p class="text-base text-gray-600 mt-1 flex items-center">
+          <svg class="h-8 w-8 text-yellow-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M12 17.75l-6.172 3.245 1.179-6.873-4.993-4.867 6.9-1.002L12 2l3.086 6.253 6.9 1.002-4.993 4.867 1.179 6.873z" /></svg>
+          {{ movies.vote_average }}
+        </p>
+
+        <p class="font-bold">
+          Overview:</p>
+        <p>
+          {{ movies.overview }}
+        </p>
+        <hr class="my-2">
+        <h3 class="font-bold">Top Billed Cast</h3>
+        <div *ngFor="let item of actors.cast">
+          {{ item.name }}
+        </div>
+      </div>
+
 
     </div>
 

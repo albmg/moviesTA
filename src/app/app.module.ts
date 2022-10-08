@@ -14,6 +14,7 @@ import { MovieListComponent } from './movies/screens/movie-list/movie-list.compo
 import { MovieDetailsComponent } from './movies/screens/movie-details/movie-details.component';
 import { HomeComponent } from './movies/screens/home/home.component';
 import { MovieCardComponent } from './movies/components/movie-card/movie-card.component';
+import { JoinPipe } from './movies/pipes/join.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MovieCardComponent } from './movies/components/movie-card/movie-card.co
     MovieListComponent,
     MovieDetailsComponent,
     HomeComponent,
-    MovieCardComponent
+    MovieCardComponent,
+    JoinPipe
   ],
   imports: [
     BrowserModule,
