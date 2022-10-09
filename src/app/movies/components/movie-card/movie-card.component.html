@@ -1,5 +1,6 @@
- <div class="rounded-xl shadow-xl">
+<div class="container mx-auto">
 
+  <!-- movie card for movie list -->
   <div *ngIf="!movies">
 
     <img
@@ -26,53 +27,97 @@
 
   </div>
 
-
+  <!-- movie card for movie details -->
   <div *ngIf="movies">
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 p-8 w-full">
+    <div class="grid grid-cols-1 sm:grid-cols-3 p-8 bg-hero bg-no-repeat bg-cover bg-center rounded-sm"
+         style="background-image: linear-gradient(rgba(135, 80, 156, 0.9), rgba(135, 80, 156, 0.9)), url('https://image.tmdb.org/t/p/original/{{ movies.backdrop_path}}');"
+    >
 
-      <img
-      class="rounded-t-xl w-full object-cover"
-      src="https://image.tmdb.org/t/p/original/{{ movies.poster_path }}"
-      alt="{{ movies.title }} movie poster"
-      >
+      <!-- Image -->
+      <div class="grid p-2 sm:col-span-1 place-items-center w-full lg:w-80">
 
-      <div class="flex flex-col p-7">
+        <img
+        class="rounded-t-xl object-contain"
+        src="https://image.tmdb.org/t/p/original/{{ movies.poster_path }}"
+        alt="{{ movies.title }} movie poster"
+        >
 
-        <h2 class="text-xl font-bold truncate mt-1">
-          {{ movies.title }} ({{ movies.release_date.toString() | slice:0:4 }})
-          <!-- Convert date in string and apply slice to get only year-->
-        </h2>
+      </div>
 
-        <h3 class="italic text-xl font-bold mt-1">
-          {{ movies.tagline }}
-        </h3>
-
-        <p>
-          {{ movies.genres | join }}
-        </p>
+      <!-- Movie Info -->
+      <div class="grid p-1 sm:col-span-2 mt-4 text-white">
 
 
-        <p class="text-base text-gray-600 mt-1 flex items-center">
-          <svg class="h-8 w-8 text-yellow-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M12 17.75l-6.172 3.245 1.179-6.873-4.993-4.867 6.9-1.002L12 2l3.086 6.253 6.9 1.002-4.993 4.867 1.179 6.873z" /></svg>
-          {{ movies.vote_average }}
-        </p>
+          <h2 class="text-xl font-bold truncate mt-1">
+            {{ movies.title }} ({{ movies.release_date.toString() | slice:0:4 }})
+            <!-- Convert date in string and apply slice to get only year-->
+          </h2>
 
-        <p class="font-bold">
-          Overview:</p>
-        <p>
-          {{ movies.overview }}
-        </p>
-        <hr class="my-2">
-        <h3 class="font-bold">Top Billed Cast</h3>
-        <div *ngFor="let item of actors.cast">
-          {{ item.name }}
+          <!-- custom pipe join -->
+          <p>
+            {{ movies.genres | join }}
+          </p>
+
+          <p class="text-base mt-1 flex items-center">
+            <svg class="h-8 w-8 text-yellow-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M12 17.75l-6.172 3.245 1.179-6.873-4.993-4.867 6.9-1.002L12 2l3.086 6.253 6.9 1.002-4.993 4.867 1.179 6.873z" /></svg>
+            {{ movies.vote_average.toString() | slice:0:4 }}
+          </p>
+
+          <h3 class="text-xl font-bold mt-1">
+            "{{ movies.tagline }}"
+          </h3>
+
+          <p class="font-bold">
+            Overview:</p>
+          <p>
+            {{ movies.overview }}
+          </p>
+
+          <div *ngFor="let crew of actors.crew">
+            <!-- Show only director & screenplay crew -->
+            <div *ngIf="crew.job === 'Director' || crew.job === 'Screenplay'">
+              <span class="font-bold">{{ crew.name }}</span> {{ crew.job }}
+            </div>
+          </div>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- Cast -->
+    <div class="w-full mt-8">
+
+
+      <h3 class="font-bold">Top Billed Cast</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 p-8 gap-8">
+
+        <div *ngFor="let cast of actors.cast">
+
+          <img
+            src="https://image.tmdb.org/t/p/original/{{ cast.profile_path}}"
+            alt="{{ cast.name }} photo"
+            class="rounded-t-xl w-full object-cover"
+          >
+
+          <div class="flex flex-col p-7">
+            <p class="font-bold">
+              {{ cast.name }}
+            </p>
+              {{ cast.character }}
+          </div>
         </div>
       </div>
 
 
     </div>
 
+
+
   </div>
 
 </div>
+
+
