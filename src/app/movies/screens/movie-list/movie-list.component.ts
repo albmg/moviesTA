@@ -17,6 +17,10 @@ export class MovieListComponent implements OnInit {
 
   constructor(private moviesService: MoviesService) { }
 
+  get queryResults() {
+    return this.moviesService.queryResultsFromApi
+  }
+
   ngOnInit(): void {
 
     this.moviesService.getPopularMovies(this.page)

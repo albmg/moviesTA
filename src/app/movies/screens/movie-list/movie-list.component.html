@@ -11,25 +11,70 @@
 
 
   <!-- movie card-->
-  <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8 gap-8">
+  <div *ngIf="!queryResults">
+    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8 gap-8">
 
-    <app-movie-card
-      *ngFor="let movie of popularMovies.results"
-      [movie]="movie"
-    >
-    </app-movie-card>
+      <app-movie-card
+        *ngFor="let movie of popularMovies.results"
+        [movie]="movie"
+      >
+      </app-movie-card>
+
+    </div>
+  </div>
+
+  <div *ngIf="queryResults">
+    <!-- {{ queryResults }} -->
+    <div *ngFor="let movie of queryResults">
+
+      <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8 gap-8">
+
+        <div class="bg-gray-100">
+
+          <img
+          class="rounded-t-xl w-full object-cover"
+          src="https://image.tmdb.org/t/p/original/{{ movie.poster_path }}"
+          alt="{{ movie.title }} movie poster"
+          [routerLink]="['/movie', movie.id]"
+          >
+
+          <div class="flex flex-col p-7">
+            <h2 class="text-xl font-bold truncate mt-1">
+              {{ movie.title }}
+            </h2>
+            <p class="text-base text-gray-600 mt-1">
+              {{ movie.popularity }}
+            </p>
+            <p class="text-base text-gray-600 mt-1">
+              {{ movie.release_date }}
+            </p>
+
+            {{ movie.vote_average }}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
 
   </div>
 
 
 
-  <mat-paginator
-    [pageSize]="popularMovies.results.length"
-    [length]="500 * popularMovies.results.length"
-    showFirstLastButtons="true"
-    (page)="setPage($event)"
-    >
-  </mat-paginator>
+  <div *ngIf="!queryResults">
+
+    <mat-paginator
+      [pageSize]="popularMovies.results.length"
+      [length]="500 * popularMovies.results.length"
+      showFirstLastButtons="true"
+      (page)="setPage($event)"
+      >
+    </mat-paginator>
+
+  </div>
+
 
 </div>
 

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MoviesService } from '../../movies.service';
-import { Search } from '../../interfaces/search.interface';
+import { Result } from '../../interfaces/search.interface';
 
 @Component({
   selector: 'app-search',
@@ -12,6 +12,7 @@ export class SearchComponent implements OnInit {
 
 
   query: string = ''
+
   errorResult: boolean = false
 
   constructor(
@@ -24,6 +25,7 @@ export class SearchComponent implements OnInit {
     this.moviesService.search(this.query)
       .subscribe(resp => {
         console.log(resp)
+        this.moviesService.queryResultsFromApi = resp.results
         if (resp.results.length === 0) {
           this.errorResult = true
         }

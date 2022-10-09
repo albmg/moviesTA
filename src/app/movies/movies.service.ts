@@ -6,6 +6,7 @@ import { PopularMovies } from './interfaces/popular.interface';
 import { Movie } from './interfaces/movie.interface';
 import { Actors } from './interfaces/actors.interface';
 import { Search } from './interfaces/search.interface';
+import { Result } from './interfaces/search.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,8 @@ export class MoviesService {
 
   private baseUrl: string = environment.baseUrl
   private apiKey: string = environment.apiKey
+
+  queryResultsFromApi!: Result[]
 
   constructor(private http: HttpClient) { }
 
