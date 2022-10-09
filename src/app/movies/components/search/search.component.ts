@@ -11,18 +11,22 @@ import { Search } from '../../interfaces/search.interface';
 export class SearchComponent implements OnInit {
 
 
-  query: string = 'b'
+  query: string = ''
+  errorResult: boolean = false
 
   constructor(
     private moviesService: MoviesService
   ) { }
 
   search(query: string) {
-    console.log(this.query)
+    this.errorResult = false
 
     this.moviesService.search(this.query)
       .subscribe(resp => {
         console.log(resp)
+        if (resp.results.length === 0) {
+          this.errorResult = true
+        }
       })
   }
 
