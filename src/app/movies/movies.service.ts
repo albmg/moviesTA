@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { PopularMovies } from './interfaces/popular.interface';
 import { Movie } from './interfaces/movie.interface';
 import { Actors } from './interfaces/actors.interface';
+import { Search } from './interfaces/search.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,15 +18,19 @@ export class MoviesService {
   constructor(private http: HttpClient) { }
 
   getPopularMovies( page: number): Observable <PopularMovies> {
-    return this.http.get<PopularMovies>(`${ this.baseUrl }/popular?api_key=${ this.apiKey }&language=en-US&page=${page} `)
+    return this.http.get<PopularMovies>(`${ this.baseUrl }/movie/popular?api_key=${ this.apiKey }&language=en-US&page=${page} `)
   }
 
 
   getMovieDetail( id: string ): Observable <Movie> {
-    return this.http.get<Movie>(`${ this.baseUrl }/${ id }?api_key=${ this.apiKey }&language=en-US`)
+    return this.http.get<Movie>(`${ this.baseUrl }/movie/${ id }?api_key=${ this.apiKey }&language=en-US`)
   }
 
   getMovieCast( id: string ): Observable <Actors> {
-    return this.http.get<Actors>(`${ this.baseUrl }/${ id }/credits?api_key=${ this.apiKey }&language=en-US`)
+    return this.http.get<Actors>(`${ this.baseUrl }/movie/${ id }/credits?api_key=${ this.apiKey }&language=en-US`)
+  }
+
+  search(query: string): Observable<Search> {
+    return this.http.get<Search>(`${ this.baseUrl }/search/multi?api_key=${ this.apiKey }&language=en-US&query=${ query }&page=1&include_adult=false`)
   }
 }

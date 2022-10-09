@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material/material.module';
@@ -15,6 +16,7 @@ import { MovieDetailsComponent } from './movies/screens/movie-details/movie-deta
 import { HomeComponent } from './movies/screens/home/home.component';
 import { MovieCardComponent } from './movies/components/movie-card/movie-card.component';
 import { JoinPipe } from './movies/pipes/join.pipe';
+import { SearchComponent } from './movies/components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +27,16 @@ import { JoinPipe } from './movies/pipes/join.pipe';
     MovieDetailsComponent,
     HomeComponent,
     MovieCardComponent,
-    JoinPipe
+    JoinPipe,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

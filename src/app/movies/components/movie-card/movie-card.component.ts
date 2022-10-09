@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from '../../interfaces/movie.interface';
 import { Result } from '../../interfaces/popular.interface';
-import { Cast, Actors } from '../../interfaces/actors.interface';
+import { Actors } from '../../interfaces/actors.interface';
 
 @Component({
   selector: 'app-movie-card',

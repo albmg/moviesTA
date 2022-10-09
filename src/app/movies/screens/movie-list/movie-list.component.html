@@ -1,33 +1,36 @@
-<div *ngIf="!popularMovies">
-  <mat-spinner></mat-spinner>
+<div class="container mx-auto">
+
+  <div *ngIf="!popularMovies">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <!-- search component -->
+  <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8 gap-8">
+    <app-search></app-search>
+  </div>
+
+
+  <!-- movie card-->
+  <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8 gap-8">
+
+    <app-movie-card
+      *ngFor="let movie of popularMovies.results"
+      [movie]="movie"
+    >
+    </app-movie-card>
+
+  </div>
+
+
+
+  <mat-paginator
+    [pageSize]="popularMovies.results.length"
+    [length]="500 * popularMovies.results.length"
+    showFirstLastButtons="true"
+    (page)="setPage($event)"
+    >
+  </mat-paginator>
+
 </div>
 
-<div class="bg-blue-500">
-  <h2 class="text-white">Info de la búsqueda</h2>
-  page: {{ popularMovies.page }}
-  <br>
-  total pages: {{ popularMovies.total_pages }}
-  <br>
-  total results: {{ popularMovies.total_results }}
-</div>
 
-<!-- movie card-->
-<div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8 gap-8">
-
-  <app-movie-card
-    *ngFor="let movie of popularMovies.results"
-    [movie]="movie"
-  >
- </app-movie-card>
-
-</div>
-
-
-
-<mat-paginator
-  [pageSize]="popularMovies.results.length"
-  [length]="500 * popularMovies.results.length"
-  showFirstLastButtons="true"
-  (page)="setPage($event)"
-  >
-</mat-paginator>
