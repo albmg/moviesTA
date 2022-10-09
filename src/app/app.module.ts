@@ -17,6 +17,7 @@ import { HomeComponent } from './movies/screens/home/home.component';
 import { MovieCardComponent } from './movies/components/movie-card/movie-card.component';
 import { JoinPipe } from './movies/pipes/join.pipe';
 import { SearchComponent } from './movies/components/search/search.component';
+import { MovieSearchedComponent } from './movies/components/movie-searched/movie-searched.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SearchComponent } from './movies/components/search/search.component';
     HomeComponent,
     MovieCardComponent,
     JoinPipe,
-    SearchComponent
+    SearchComponent,
+    MovieSearchedComponent
   ],
   imports: [
     BrowserModule,
