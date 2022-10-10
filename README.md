@@ -2,7 +2,7 @@
 
 Angular App for listing Movies. Based on https://www.themoviedb.org API
 
--
+---
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.6.
 
