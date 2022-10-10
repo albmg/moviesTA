@@ -1,19 +1,54 @@
 <div class="bg-gray-100">
 
-  <img
-    class="rounded-t-xl w-full object-cover"
-    src="https://image.tmdb.org/t/p/original/{{ movie.poster_path }}"
-    alt="{{ movie.title }} movie poster"
-    [routerLink]="['/movie', movie.id]"
-  >
+  <h1>{{ movie.name }}</h1>
+
+   <img
+      class="rounded-t-xl w-full object-cover"
+      src="https://image.tmdb.org/t/p/original/{{ movie.profile_path }}"
+      alt="{{ movie.title }} movie poster"
+      [routerLink]="['/movie', movie.id]"
+    >
+
+
+  <div *ngIf="!movie.poster_path">
+
+    <p class="font-bold">
+      Known for:
+    </p>
+
+    <ul *ngFor="let item of movie.known_for">
+
+      <li>
+        {{ item.title }}
+      </li>
+
+    </ul>
+
+  </div>
+
+
+  <div *ngIf="movie.poster_path === null">
+
+    <img src="../../../../assets/noImage.jpg" alt="">
+
+  </div>
+
+  <div *ngIf="movie.poster_path != '' && !movie.name ">
+
+    <img
+      class="rounded-t-xl w-full object-cover"
+      src="https://image.tmdb.org/t/p/original/{{ movie.poster_path }}"
+      alt="{{ movie.title }} movie poster"
+      [routerLink]="['/movie', movie.id]"
+    >
+
+  </div>
+
 
   <div class="flex flex-col p-7">
     <h2 class="text-xl font-bold truncate mt-1">
       {{ movie.title }}
     </h2>
-    <p class="text-base text-gray-600 mt-1">
-      {{ movie.popularity }}
-    </p>
     <p class="text-base text-gray-600 mt-1">
       {{ movie.release_date }}
     </p>

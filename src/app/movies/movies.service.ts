@@ -33,7 +33,7 @@ export class MoviesService {
     return this.http.get<Actors>(`${ this.baseUrl }/movie/${ id }/credits?api_key=${ this.apiKey }&language=en-US`)
   }
 
-  search(query: string): Observable<Search> {
+  searchMovies(query: string): Observable<Search> {
     return this.http.get<Search>(`${ this.baseUrl }/search/multi?api_key=${ this.apiKey }&language=en-US&query=${ query }&page=1&include_adult=false`)
   }
 }

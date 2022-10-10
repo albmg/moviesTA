@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
   search(query: string) {
     this.errorResult = false
 
-    this.moviesService.search(this.query)
+    this.moviesService.searchMovies(this.query)
       .subscribe(resp => {
         console.log(resp)
         this.moviesService.queryResultsFromApi = resp.results

@@ -9,25 +9,41 @@
 
     <div class="bg-gray-100">
 
-      <img
-      class="rounded-t-xl w-full object-cover"
-      src="https://image.tmdb.org/t/p/original/{{ movie.poster_path }}"
-      alt="{{ movie.title }} movie poster"
-      [routerLink]="['/movie', movie.id]"
-      >
+      <div *ngIf="movie.poster_path === null">
+
+        <img src="../../../../assets/noImage.jpg" alt="">
+
+      </div>
+
+      <div *ngIf="movie.poster_path != '' ">
+        <img
+        class="rounded-t-xl w-full object-cover"
+        src="https://image.tmdb.org/t/p/original/{{ movie.poster_path }}"
+        alt="{{ movie.title }} movie poster"
+        [routerLink]="['/movie', movie.id]"
+        >
+      </div>
 
       <div class="flex flex-col p-7">
         <h2 class="text-xl font-bold truncate mt-1">
           {{ movie.title }}
         </h2>
-        <p class="text-base text-gray-600 mt-1">
+        <!-- <p class="text-base text-gray-600 mt-1">
           {{ movie.popularity }}
-        </p>
-        <p class="text-base text-gray-600 mt-1">
+        </p> -->
+        <p class="text-base text-gray-600 mt-1 flex items-center">
+          <svg class="h-8 w-8 text-black-500  mr-2"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
           {{ movie.release_date }}
         </p>
+        <p class="text-base mt-1 flex items-center">
+          <svg class="h-8 w-8 text-yellow-500 mr-2"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M12 17.75l-6.172 3.245 1.179-6.873-4.993-4.867 6.9-1.002L12 2l3.086 6.253 6.9 1.002-4.993 4.867 1.179 6.873z" />
+          </svg>
+          {{ movie.vote_average }}
+        </p>
 
-        {{ movie.vote_average }}
 
       </div>
 
@@ -46,11 +62,10 @@
       <div class="grid p-2 sm:col-span-1 place-items-center w-full lg:w-80 ">
 
         <img
-        class="rounded-t-xl object-contain"
-        src="https://image.tmdb.org/t/p/original/{{ movies.poster_path }}"
-        alt="{{ movies.title }} movie poster"
+          class="rounded-t-xl object-contain"
+          src="https://image.tmdb.org/t/p/original/{{ movies.poster_path }}"
+          alt="{{ movies.title }} movie poster"
         >
-
       </div>
 
       <!-- Movie Info -->
@@ -104,9 +119,12 @@
 
         <div *ngFor="let cast of actors.cast">
 
-          <div *ngIf="cast.profile_path === null" class="sr-only sm:not-sr-only">
+          <div *ngIf="cast.profile_path === null">
+
+            <img src="../../../../assets/noImage.jpg" alt="{{ cast.name }} photo">
 
           </div>
+
           <div *ngIf="cast.profile_path != ''">
             <img
               src="https://image.tmdb.org/t/p/original/{{ cast.profile_path}}"
