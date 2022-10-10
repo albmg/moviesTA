@@ -1,5 +1,5 @@
 <form autocomplete="off">
-  <mat-form-field class="w-96" appearance="fill">
+  <mat-form-field class="w-full text-blue-500" appearance="legacy">
     <input
       matInput
       type="text"
@@ -7,7 +7,7 @@
       [(ngModel)]="query"
       placeholder="Search for a movie, tv show, person .....">
     <button matSuffix mat-icon-button (click)="search(query)">
-      <mat-icon>search</mat-icon>
+      <mat-icon class="text-blue-500">search</mat-icon>
     </button>
   </mat-form-field>
 </form>
